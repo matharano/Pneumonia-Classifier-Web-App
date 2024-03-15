@@ -164,3 +164,8 @@ data/
 
 # MacOS
 *.DS_Store
+
+# Utils
+backend/weights/
+backend/wandb/
+*debug*
