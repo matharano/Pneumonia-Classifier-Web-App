@@ -27,7 +27,11 @@ pip install -r requirements.txt
 
 ### Frontend
 
-No action required.
+Install dependencies
+```sh
+cd frontend
+npm install
+```
 
 ## Usage
 

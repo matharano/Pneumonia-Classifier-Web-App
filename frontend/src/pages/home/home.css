@@ -1,0 +1,30 @@
+.Page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('../../media/collation.png');
+    background-size: cover;
+}
+
+header {
+    min-height: 100vh;
+    max-width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: var(--white);
+}
+
+h1 {
+    color: var(--blue);
+    font-family: 'Poppins';
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+p {
+    font-weight: 200;
+}
