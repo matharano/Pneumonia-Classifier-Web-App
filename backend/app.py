@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
 
 # App configuration
 app = FastAPI()
@@ -9,10 +10,15 @@ app.add_middleware(CORSMiddleware,
                    allow_methods=["*"]
                    )
 
+class Prediction(BaseModel):
+    prediction: bool
+    confidence: float = Field(..., ge=0, le=1)
+    detail: str = None
+
 # Routes definitions
 @app.post("/predict")
-async def predict(file: UploadFile):
+async def predict(file: UploadFile) -> Prediction:
     file_content = await file.read()
     with open('fle.jpeg', 'wb') as fle:
         fle.write(file_content)
-    return {'prediction': False, 'confidence': 0.0} 
+    return Prediction(prediction=True, confidence=0.0)
