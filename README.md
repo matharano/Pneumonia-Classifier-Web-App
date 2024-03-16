@@ -13,16 +13,17 @@ Coding task for technical assessment at Deeplify
 
 ## Installation
 
+To start, clone the repository to your local machine.
+```sh
+git clone git@github.com:matharano/deeplify-coding-task.git
+```
+
 ### Backend
 
-1. Clone the repo
-   ```sh
-   git clone git@github.com:matharano/deeplify-coding-task.git
-   ```
-2. Install dependencies
-   ```sh
-   pip install -r requirements.txt
-   ```
+Install dependencies
+```sh
+pip install -r requirements.txt
+```
 
 ### Frontend
 
@@ -38,6 +39,17 @@ No action required.
    ```
 
 Documentation can be found at http://127.0.0.1:8000/docs
+
+### Frontend
+
+1. Navigate to the frontend directory
+   ```sh
+   cd frontend
+   ```
+2. Run the server
+   ```sh
+   npm start
+   ```
 
 ## Testing
 
