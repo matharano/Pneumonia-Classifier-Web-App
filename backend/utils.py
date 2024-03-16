@@ -61,13 +61,13 @@ class ConfusionMatrix:
         """TP / (TP + FP)"""
         return self.true_positive / (self.true_positive + self.false_positive)
 
-def mount_dataset(folder_path:str, batch_size:int=4, num_workers:int=4) -> tuple[list[str], dict[Literal['train', 'valid', 'test'], DataLoader]]:
+def mount_dataset(folder_path:str, batch_size:int=4, num_workers:int=4, image_size=(768, 1024), image_resize_scale=(980, 1340)) -> tuple[list[str], dict[Literal['train', 'valid', 'test'], DataLoader]]:
     """From the dataset path, returns a dictionary with the dataloaders of training and validation.
     @return list of classes, a dict of dataloaders"""
     augmented_transformations = transforms.Compose([
         transforms.Grayscale(),
-        transforms.Resize((980, 1340)),
-        transforms.CenterCrop((768, 1024)),
+        transforms.Resize(image_resize_scale),
+        transforms.CenterCrop(image_size),
         transforms.RandomRotation(20),
         transforms.ToImage(),
         transforms.ToDtype(torch.float32, scale=True)
@@ -75,8 +75,8 @@ def mount_dataset(folder_path:str, batch_size:int=4, num_workers:int=4) -> tuple
 
     standard_transformation = transforms.Compose([
         transforms.Grayscale(),
-        transforms.Resize((980, 1340)),
-        transforms.CenterCrop((768, 1024)),
+        transforms.Resize(image_resize_scale),
+        transforms.CenterCrop(image_size),
         transforms.ToImage(),
         transforms.ToDtype(torch.float32, scale=True)
     ])

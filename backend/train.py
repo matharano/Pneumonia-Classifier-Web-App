@@ -59,14 +59,13 @@ def train_model(
                             loss.backward()
                             optimizer.step()
 
-                    if scheduler is not None and phase == 'train': scheduler.step()
-                    
                     # statistics
                     running_loss += loss.item() * image.size(0)
                     cm.append(preds, label.data)
                     
-                epoch_loss = running_loss / len(dataloaders[phase])
+                if scheduler is not None and phase == 'train': scheduler.step()
 
+                epoch_loss = running_loss / len(dataloaders[phase])
                 log.info(f'{phase} Loss: {epoch_loss:.4f} Acc: {cm.accuracy:.4f}')
 
                 # deep copy the model
