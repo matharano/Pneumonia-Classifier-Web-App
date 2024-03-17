@@ -51,7 +51,7 @@ function AppRoutes() {
     }
 
     return (
-        <div className="App" style={{ backgroundImage: `url(${image ? URL.createObjectURL(image) : BackgroundDefault})`, animation: 'fade-in 0.5s' }} >
+        <div className="App" style={{ backgroundImage: `url(${image ? URL.createObjectURL(image) : BackgroundDefault})` }} >
             <div className='Background-gradient' style={{ animation: isLoading ? 'fadeToBlack 0.3s forwards' : 'none' }} >
                 {isLoading ? <div className='LoadingBanner'/> :
                     <>

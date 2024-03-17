@@ -4,6 +4,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  animation: app-fade-in 0.5s;
 }
 
 .Background-gradient {
@@ -45,6 +46,16 @@
 @keyframes fade-in {
     from {
       opacity: 0;
+    }
+    to {
+      opacity: 100;
+    }
+  }
+
+@keyframes app-fade-in {
+    from {
+      opacity: 0;
+      background-color: black;
     }
     to {
       opacity: 100;
