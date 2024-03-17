@@ -8,6 +8,7 @@ import Inference from './pages/inference/inference';
 function AppRoutes() {
     const [image, setImage] = React.useState();
     const [inferenceData, setInferenceData] = React.useState(null);
+    const [isLoading, setIsLoading] = React.useState(false);
     const navigate = useNavigate();
 
     // Redirect user to home page if no data is provided yet
@@ -19,13 +20,17 @@ function AppRoutes() {
 
     // Redirect user to home page if no data is provided yet
     const redirectHome = () => {
+        setIsLoading(true);
         setImage(null);
-        navigate('/');
+        setTimeout(() => {
+            navigate('/');
+            setIsLoading(false)
+        }, 500);
     };
 
     const handleImageSelection = (imageFile) => {
         // Update image
-        setImage(imageFile)
+        setIsLoading(true);
 
         // Send image to backend
         let form = new FormData()
@@ -38,15 +43,16 @@ function AppRoutes() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data); 
             setInferenceData(data);
+            setImage(imageFile)
+            navigate("/prediction")
+            setTimeout(() => setIsLoading(false), 500);
         })
-        navigate("/prediction")
     }
 
     return (
         <div className="App" style={{ backgroundImage: `url(${image ? URL.createObjectURL(image): BackgroundDefault})` }} >
-            <div className='Background-gradient'>
+            <div className='Background-gradient' style={{ animation: isLoading ? 'fadeToBlack 1s forwards' : 'none' }} >
                 <a className='NavBar' onClick={redirectHome} >Pneumonia Diagnosis</a>
                 <Routes>
                     <Route path="/" element={<Home setImage={handleImageSelection} />} />

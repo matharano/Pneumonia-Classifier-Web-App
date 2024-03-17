@@ -24,8 +24,14 @@
     font-weight: 200;
     font-size: calc(10px + 1.6vmin);
     user-select: none;
+    cursor: pointer;
     position: absolute;
     margin: 30px;
     top: 0;
 }
 
+@keyframes fadeToBlack {
+    0% { background-color: transparent; }
+    50% { background-color: black; }
+    100% { background-color: transparent; }
+}
