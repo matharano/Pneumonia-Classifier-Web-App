@@ -8,7 +8,7 @@ from .utils import init_logging
 client = TestClient(app)
 log = init_logging()
 
-test_file_path = 'data/chest_xray/test/NORMAL/IM-0001-0001.jpeg'
+test_file_path = 'backend/data/tests/IM-0001-0001.jpeg'
 
 def test_image_inference():
     """Check expected behavior with file uploaded"""
@@ -30,7 +30,7 @@ def test_encoded_image_inference():
 
 def test_large_file():
     """Check response to a large file"""
-    filepath = 'data/large-image.jpg'
+    filepath = 'backend/data/tests/large-image.jpg'
     with open(filepath, 'rb') as file:
         extension = os.path.splitext(filepath)[1][1:]
         response = client.post('/predict', files={'file': (os.path.basename(filepath), file, extension)})
@@ -47,7 +47,7 @@ def test_without_content():
 
 def test_wrong_file_format():
     """Check response to file other than image"""
-    filepath = 'data/README.md'
+    filepath = 'backend/data/README.md'
     with open(filepath, 'rb') as file:
         extension = os.path.splitext(filepath)[1][1:]
         response = client.post('/predict', files={'file': (os.path.basename(filepath), file, extension)})

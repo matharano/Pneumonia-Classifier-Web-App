@@ -13,17 +13,35 @@ Coding task for technical assessment at Deeplify
 
 ## Installation
 
-To start, clone the repository to your local machine.
-```sh
-git clone git@github.com:matharano/deeplify-coding-task.git
-```
+1. Clone the repository to your local machine.
+    ```sh
+    git clone git@github.com:matharano/deeplify-coding-task.git
+    ```
+2. Based on the `.env.template` file, create a `.env` file in the root directory and update the values if necessary.
+    ```sh
+    cp .env.template .env
+    ```
 
 ### Backend
 
-Install dependencies
-```sh
-pip install -r requirements.txt
-```
+1. Enter the backend directory
+    ```sh
+    cd backend
+    ```
+2. Create a virtual environment
+    ```sh
+    python -m venv venv
+    ```
+3. Activate the virtual environment
+    ```sh
+    source venv/bin/activate
+    ```
+4. Install dependencies
+    ```sh
+    pip install -r requirements.txt
+    ```
+5. Download and extract the weights in `backend/weights` directory from the following link:
+    https://drive.google.com/drive/folders/1dikJzuwqiObUdaXWm0AJ80rR5sYDK3d5?usp=sharing
 
 ### Frontend
 
@@ -35,25 +53,15 @@ npm install
 
 ## Usage
 
-### Backend
-
-1. Run the server
-   ```sh
-   uvicorn backend.app:app --host 127.0.0.1 --port 8000
-   ```
-
-Documentation can be found at http://127.0.0.1:8000/docs
-
-### Frontend
-
-1. Navigate to the frontend directory
-   ```sh
-   cd frontend
-   ```
-2. Run the server
-   ```sh
-   npm start
-   ```
+1. Update the .env file if necessary
+2. Navigate to the root directory
+    ```sh
+    cd deeplify-coding-task
+    ```
+3. Run backend and frontend
+    ```sh
+    source entrypoint.sh
+    ```
 
 ## Testing
 
