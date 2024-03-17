@@ -1,10 +1,13 @@
 import './App.css';
 import React from 'react';
 import Home from './pages/home/home';
+import Inference from './pages/inference/inference';
 
 
 function App() {
     const [image, setImage] = React.useState();
+    const [imageSelected, setImageSelected] = React.useState(false);
+    const [inferenceData, setInferenceData] = React.useState(null);
 
     const handleImageSelection = (imageFile) => {
         // Update image
@@ -20,14 +23,12 @@ function App() {
             body: form
         })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {console.log(data); setInferenceData(data)})
     }
 
     return (
         <div className="App">
-            <Home
-                setImage={handleImageSelection}
-            />
+            {inferenceData != null ? <Inference image={image} prediction={inferenceData} /> : <Home setImage={handleImageSelection} />}
         </div>
     );
 }

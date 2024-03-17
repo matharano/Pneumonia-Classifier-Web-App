@@ -1,4 +1,4 @@
-import './home.css';
+import './.css';
 import React from 'react';
 import colors from '../../utils';
 import { styled } from '@mui/material/styles';
