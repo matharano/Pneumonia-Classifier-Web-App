@@ -7,7 +7,7 @@ import ImageInput from '../../components/ImageInput';
 function Inference({image, prediction, setImage}) {
     
     var predictionColor = prediction['prediction'] ? colors.red : colors.blue;
-    var probability = (100 * prediction['probability']).toFixed(1)
+    var probability = 100 * prediction['probability'];
 
     const handleImageSelection = (event) => {
         if ( event.target.files && event.target.files[0] ) {
@@ -22,7 +22,7 @@ function Inference({image, prediction, setImage}) {
             >
                 {prediction['prediction'] ? 'Pneumonia detected' : 'Pneumonia undetected'}
             </h1>
-            <p>{'Pneumonia probability: ' + probability + '%'}</p>
+            <p>{'Pneumonia probability: ' + probability.toFixed(1) + '%'}</p>
             <ProbabilityBar color={predictionColor} probability={probability} />
             <ImageInput title='Upload new image' handleChange={handleImageSelection} />
         </div>

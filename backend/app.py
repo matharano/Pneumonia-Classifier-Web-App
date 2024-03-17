@@ -1,3 +1,4 @@
+import os
 import io, base64
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,11 +10,15 @@ from .exceptions import *
 
 # App configuration
 app = FastAPI()
-origins = ["http://localhost:3001"]
-app.add_middleware(CORSMiddleware,
-                   allow_origins=origins,
-                   allow_methods=["*"]
-                   )
+origins = [f"http://localhost:{os.environ.get('FRONTEND_PORT')}", f"http://{os.environ.get('FRONTEND_IP')}:{os.environ.get('FRONTEND_PORT')}"]
+print(origins)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class Prediction(BaseModel):
     prediction: bool

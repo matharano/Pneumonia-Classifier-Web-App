@@ -33,8 +33,10 @@ function AppRoutes() {
         // Send image to backend
         let form = new FormData()
         form.append('file', imageFile )
+        
+        const endpoint = `http://${process.env.REACT_APP_BACKEND_IP}:${process.env.REACT_APP_BACKEND_PORT}/predict`;
 
-        fetch("http://127.0.0.1:8000/predict", {
+        fetch(endpoint, {
             method: "POST",
             mode: "cors",
             body: form

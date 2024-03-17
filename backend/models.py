@@ -57,6 +57,5 @@ class ResNet():
         processed_image = self.preprocess(image)
         weights:torch.Tensor = self.softmax(self.model(processed_image))
         inference:str = self.classes[weights.argmax()]
-        print(weights)
         probability = weights[0, self.target_class_idx]
         return inference, probability
