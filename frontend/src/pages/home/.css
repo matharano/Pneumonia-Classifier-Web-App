@@ -1,4 +1,4 @@
-.Page {
+.HomePage {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,7 +6,7 @@
     background-size: cover;
 }
 
-header {
+.HomePage header {
     min-height: 100vh;
     max-width: 45%;
     display: flex;
@@ -17,7 +17,7 @@ header {
     color: var(--white);
 }
 
-h1 {
+.HomePage h1 {
     color: var(--blue);
     font-family: 'Poppins';
     font-weight: 500;
@@ -25,6 +25,6 @@ h1 {
     margin-bottom: 10px;
 }
 
-p {
+.HomePage p {
     font-weight: 200;
 }

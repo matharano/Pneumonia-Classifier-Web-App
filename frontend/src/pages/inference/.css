@@ -1,4 +1,4 @@
-.Page {
+.InferencePage {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,7 +7,7 @@
     min-width: 100%;
 }
 
-.Background-gradient {
+.InferencePage .Background-gradient {
     min-height: 100vh;
     min-width: 100%;
     background: radial-gradient(rgba(0,0,0,0.9), rgba(0, 0, 0, 0.826), rgba(0, 0, 0, 0.767));
@@ -16,7 +16,8 @@
     align-items: center;
 }
 
-header {
+.InferencePage header {
+    min-height: 100vh;
     max-width: 45%;
     display: flex;
     flex-direction: column;
@@ -26,7 +27,7 @@ header {
     color: var(--white);
 }
 
-h1 {
+.InferencePage h1 {
     color: var(--white);
     font-family: 'Poppins';
     font-weight: 400;
@@ -34,6 +35,6 @@ h1 {
     margin-bottom: 10px;
 }
 
-p {
+.InferencePage p {
     font-weight: 200;
 }

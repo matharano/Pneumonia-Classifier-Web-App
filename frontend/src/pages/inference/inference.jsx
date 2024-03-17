@@ -21,7 +21,7 @@ function Inference({image, prediction}) {
 
     const probability = (100 * prediction['probability']).toFixed(1)
     return(
-        <div className='Page' style={{backgroundImage: `url(${URL.createObjectURL(image)})` }} >
+        <div className='InferencePage' style={{backgroundImage: `url(${URL.createObjectURL(image)})` }} >
             <div className='Background-gradient'>
                 <header >
                     <h1>{prediction['prediction'] ? 'Pneumonia detected' : 'Pneumonia undetected'}</h1>
