@@ -1,26 +1,20 @@
 import './.css';
 import colors from '../../utils';
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import ProbabilityBar from '../../components/ProbabilityBar';
+import ImageInput from '../../components/ImageInput';
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  height: 15,
-  borderRadius: 5,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: colors.white,
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 5,
-    backgroundColor: theme.color,
-  },
-}));
-
-function Inference({image, prediction}) {
+function Inference({image, prediction, setImage}) {
     
-    const predictionColor = prediction['prediction'] ? colors.red : colors.blue;
-    const probability = (100 * prediction['probability']).toFixed(1)
+    var predictionColor = prediction['prediction'] ? colors.red : colors.blue;
+    var probability = (100 * prediction['probability']).toFixed(1)
+
+    const handleImageSelection = (event) => {
+        if ( event.target.files && event.target.files[0] ) {
+            setImage(event.target.files[0]);
+        }
+    };
+
     return(
         <div className='InferencePage' style={{backgroundImage: `url(${URL.createObjectURL(image)})` }} >
             <div className='Background-gradient'>
@@ -31,9 +25,8 @@ function Inference({image, prediction}) {
                         {prediction['prediction'] ? 'Pneumonia detected' : 'Pneumonia undetected'}
                     </h1>
                     <p>{'Pneumonia probability: ' + probability + '%'}</p>
-                    <Box sx={{ width: '100%'}}>
-                        <BorderLinearProgress variant="determinate" value={probability} theme={{ color: predictionColor }} />
-                    </Box>
+                    <ProbabilityBar color={predictionColor} probability={probability} />
+                    <ImageInput title='Upload new image' handleChange={handleImageSelection} />
                 </header>
             </div>
         </div>

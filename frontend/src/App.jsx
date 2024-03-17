@@ -28,7 +28,7 @@ function App() {
 
     return (
         <div className="App">
-            {inferenceData != null ? <Inference image={image} prediction={inferenceData} /> : <Home setImage={handleImageSelection} />}
+            {inferenceData != null ? <Inference image={image} prediction={inferenceData} setImage={handleImageSelection} /> : <Home setImage={handleImageSelection} />}
         </div>
     );
 }

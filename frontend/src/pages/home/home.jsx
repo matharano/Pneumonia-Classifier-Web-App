@@ -1,17 +1,6 @@
 import './.css';
 import React from 'react';
-import colors from '../../utils';
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import UploadRoundedIcon from '@mui/icons-material/UploadRounded';
-
-const ColorButton = styled(Button)(({ theme }) => ({
-    color: colors.blue,
-    '&:hover': {
-      backgroundColor: colors.blue,
-      color: theme.palette.getContrastText(colors.blue)
-    },
-  }));
+import ImageInput from '../../components/ImageInput';
 
 function Home({setImage}) {
     const inputFileRef = React.useRef();
@@ -27,24 +16,10 @@ function Home({setImage}) {
             <header>
                 <h1>Pneumonia Diagnosis</h1>
                 <p>Click in the button below to select an image of lungs xray or drop an image to infere whether it presents signs of pneumonia.</p>
-                <ColorButton
-                    variant='outlined'
-                    size='large'
-                    endIcon={<UploadRoundedIcon />}
-                    onClick={() => inputFileRef.current.click()}
-                >
-                    Upload image
-                </ColorButton>
-                <input
-                    className="Upload-button"
-                    type="file"
-                    accept=".jpg,.jpeg,.png"
-                    ref={inputFileRef}
-                    onChange={handleImageSelection}
-                    hidden />
+                <ImageInput handleChange={handleImageSelection}/>
             </header>
         </div>
     );
-}
+};
 
 export default Home;

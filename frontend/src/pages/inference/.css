@@ -37,3 +37,9 @@
 .InferencePage p {
     font-weight: 200;
 }
+
+.InferencePage button {
+    margin: 50px;
+    position: absolute;
+    bottom: 0;
+}
