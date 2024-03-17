@@ -1,7 +1,31 @@
 .App {
   text-align: center;
-  background-color: var(--black);
+  background-size: cover;
   align-items: center;
   display: flex;
   flex-direction: column;
 }
+
+.Background-gradient {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: var(--white);
+    background: radial-gradient(rgba(0,0,0,0.9), rgba(0, 0, 0, 0.826), rgba(0, 0, 0, 0.767));
+}
+
+.App a.NavBar {
+    color: var(--white);
+    font-family: 'Poppins';
+    font-weight: 200;
+    font-size: calc(10px + 1.6vmin);
+    user-select: none;
+    position: absolute;
+    margin: 30px;
+    top: 0;
+}
+

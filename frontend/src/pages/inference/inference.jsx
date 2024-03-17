@@ -16,19 +16,15 @@ function Inference({image, prediction, setImage}) {
     };
 
     return(
-        <div className='InferencePage' style={{backgroundImage: `url(${URL.createObjectURL(image)})` }} >
-            <div className='Background-gradient'>
-                <header >
-                    <h1
-                        style={{ color: predictionColor }}
-                    >
-                        {prediction['prediction'] ? 'Pneumonia detected' : 'Pneumonia undetected'}
-                    </h1>
-                    <p>{'Pneumonia probability: ' + probability + '%'}</p>
-                    <ProbabilityBar color={predictionColor} probability={probability} />
-                    <ImageInput title='Upload new image' handleChange={handleImageSelection} />
-                </header>
-            </div>
+        <div className='InferencePage' >
+            <h1
+                style={{ color: predictionColor }}
+            >
+                {prediction['prediction'] ? 'Pneumonia detected' : 'Pneumonia undetected'}
+            </h1>
+            <p>{'Pneumonia probability: ' + probability + '%'}</p>
+            <ProbabilityBar color={predictionColor} probability={probability} />
+            <ImageInput title='Upload new image' handleChange={handleImageSelection} />
         </div>
     )
 };
