@@ -21,6 +21,8 @@
 .LoadingBanner {
     height: 100%;
     width: 100%;
+    background-color: black;
+    animation: fade-in 0.5s;
 }
 
 .App a.NavBar {
@@ -37,8 +39,7 @@
 
 @keyframes fadeToBlack {
     0% { background-color: transparent; }
-    40% { background-color: black; }
-    100% { background-color: transparent; }
+    100% { background-color: black; }
 }
 
 @keyframes fade-in {

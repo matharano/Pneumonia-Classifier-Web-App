@@ -23,12 +23,13 @@ function AppRoutes() {
         setIsLoading(true);
         setImage(null);
         navigate('/');
-        setTimeout(() => setIsLoading(false), 1000);
+        setTimeout(() => setIsLoading(false), 300);
     };
 
     const handleImageSelection = (imageFile) => {
         // Update image
         setIsLoading(true);
+        setTimeout(() => setImage(imageFile), 300);
 
         // Send image to backend
         let form = new FormData()
@@ -44,15 +45,14 @@ function AppRoutes() {
         .then(response => response.json())
         .then(data => {
             setInferenceData(data);
-            setImage(imageFile);
             navigate("/prediction");
-            setTimeout(() => setIsLoading(false), 1000);
+            setTimeout(() => setIsLoading(false), 0);
         })
     }
 
     return (
-        <div className="App" style={{ backgroundImage: `url(${image ? URL.createObjectURL(image) : BackgroundDefault})` }} >
-            <div className='Background-gradient' style={{ animation: isLoading ? 'fadeToBlack 1.4s forwards' : 'none' }} >
+        <div className="App" style={{ backgroundImage: `url(${image ? URL.createObjectURL(image) : BackgroundDefault})`, animation: 'fade-in 0.5s' }} >
+            <div className='Background-gradient' style={{ animation: isLoading ? 'fadeToBlack 0.3s forwards' : 'none' }} >
                 {isLoading ? <div className='LoadingBanner'/> :
                     <>
                         <a className='NavBar' onClick={redirectHome} >Pneumonia Diagnosis</a>

@@ -93,5 +93,5 @@ class EfficientNet():
         processed_image = self.preprocess(image)
         weights:torch.Tensor = self.softmax(self.model(processed_image))
         probability = weights[0, self.target_class_idx]
-        inference:str = self.classes[self.target_class_idx if weights[0, self.target_class_idx] else not weights[0, self.target_class_idx]]
+        inference:str = self.classes[self.target_class_idx if weights[0, self.target_class_idx] >= .92 else not weights[0, self.target_class_idx]]
         return inference, probability
