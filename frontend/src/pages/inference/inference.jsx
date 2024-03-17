@@ -24,6 +24,8 @@ function Inference({image, prediction, setImage}) {
             </h1>
             <p>{'Pneumonia probability: ' + probability.toFixed(1) + '%'}</p>
             <ProbabilityBar color={predictionColor} probability={probability} />
+            <br/>
+            <p className='Disclaimer' >Pneumonia is only declared if probability is higher than 92%.</p>
             <ImageInput title='Upload new image' handleChange={handleImageSelection} />
         </div>
     )

@@ -21,6 +21,12 @@
     font-weight: 200;
 }
 
+.InferencePage .Disclaimer {
+    position: relative;
+    bottom: 0;
+    font-size: medium;
+}
+
 .InferencePage button {
     margin: 50px;
     position: absolute;
