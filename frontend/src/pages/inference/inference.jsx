@@ -19,15 +19,15 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 function Inference({image, prediction}) {
 
-    const confidence = 50 //(100 * prediction['confidence']).toFixed(1)
+    const probability = (100 * prediction['probability']).toFixed(1)
     return(
         <div className='Page' style={{backgroundImage: `url(${URL.createObjectURL(image)})` }} >
             <div className='Background-gradient'>
                 <header >
                     <h1>{prediction['prediction'] ? 'Pneumonia detected' : 'Pneumonia undetected'}</h1>
-                    <p>{'Pneumonia probability: ' + confidence + '%'}</p>
+                    <p>{'Pneumonia probability: ' + probability + '%'}</p>
                     <Box sx={{ width: '100%'}}>
-                        <BorderLinearProgress variant="determinate" value={confidence} />
+                        <BorderLinearProgress variant="determinate" value={probability} />
                     </Box>
                 </header>
             </div>
