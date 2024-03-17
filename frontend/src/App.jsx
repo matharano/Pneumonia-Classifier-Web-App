@@ -22,10 +22,8 @@ function AppRoutes() {
     const redirectHome = () => {
         setIsLoading(true);
         setImage(null);
-        setTimeout(() => {
-            navigate('/');
-            setIsLoading(false)
-        }, 500);
+        navigate('/');
+        setTimeout(() => setIsLoading(false), 1000);
     };
 
     const handleImageSelection = (imageFile) => {
@@ -44,20 +42,24 @@ function AppRoutes() {
         .then(response => response.json())
         .then(data => {
             setInferenceData(data);
-            setImage(imageFile)
-            navigate("/prediction")
-            setTimeout(() => setIsLoading(false), 500);
+            setImage(imageFile);
+            navigate("/prediction");
+            setTimeout(() => setIsLoading(false), 1000);
         })
     }
 
     return (
-        <div className="App" style={{ backgroundImage: `url(${image ? URL.createObjectURL(image): BackgroundDefault})` }} >
-            <div className='Background-gradient' style={{ animation: isLoading ? 'fadeToBlack 1s forwards' : 'none' }} >
-                <a className='NavBar' onClick={redirectHome} >Pneumonia Diagnosis</a>
-                <Routes>
-                    <Route path="/" element={<Home setImage={handleImageSelection} />} />
-                    <Route path="/prediction" element={inferenceData ? <Inference image={image} prediction={inferenceData} setImage={handleImageSelection} /> : null} />
-                </Routes>
+        <div className="App" style={{ backgroundImage: `url(${image ? URL.createObjectURL(image) : BackgroundDefault})` }} >
+            <div className='Background-gradient' style={{ animation: isLoading ? 'fadeToBlack 1.4s forwards' : 'none' }} >
+                {isLoading ? <div className='LoadingBanner'/> :
+                    <>
+                        <a className='NavBar' onClick={redirectHome} >Pneumonia Diagnosis</a>
+                        <Routes>
+                            <Route path="/" element={<Home setImage={handleImageSelection} />} />
+                            <Route path="/prediction" element={inferenceData ? <Inference image={image} prediction={inferenceData} setImage={handleImageSelection} /> : null} />
+                        </Routes>
+                    </>
+                }
             </div>
         </div>
     );

@@ -18,6 +18,11 @@
     background: radial-gradient(rgba(0,0,0,0.9), rgba(0, 0, 0, 0.826), rgba(0, 0, 0, 0.767));
 }
 
+.LoadingBanner {
+    height: 100%;
+    width: 100%;
+}
+
 .App a.NavBar {
     color: var(--white);
     font-family: 'Poppins';
@@ -32,6 +37,15 @@
 
 @keyframes fadeToBlack {
     0% { background-color: transparent; }
-    50% { background-color: black; }
+    40% { background-color: black; }
     100% { background-color: transparent; }
 }
+
+@keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 100;
+    }
+  }

@@ -6,6 +6,10 @@
     max-width: 45%;
 }
 
+.InferencePage * {
+    animation: fade-in 0.5s;
+}
+
 .InferencePage h1 {
     font-family: 'Poppins';
     font-weight: 400;

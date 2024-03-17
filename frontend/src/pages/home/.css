@@ -2,6 +2,10 @@
     max-width: 45%;
 }
 
+.HomePage * {
+    animation: fade-in 0.3s;
+}
+
 .HomePage h1 {
     color: var(--blue);
     font-family: 'Poppins';
