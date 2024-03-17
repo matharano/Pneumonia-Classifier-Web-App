@@ -45,7 +45,7 @@ async def predict(file: UploadFile) -> Prediction:
         raise BrokenImage(len(file_content))
 
     # Inference
-    model = models.ResNet(weights_path='backend/weights/ResNet18-SGD(0.001)-batch(32)-weightedloss.pth')
+    model = models.EfficientNet(weights_path='backend/weights/EfficientNetv2-SGD(0.001)-batch(4)-weightedloss.pth')
     inference_class, probability = model.infere(image)
     inference = inference_class.lower() == 'pneumonia'
     response = Prediction(prediction=inference, probability=probability)
