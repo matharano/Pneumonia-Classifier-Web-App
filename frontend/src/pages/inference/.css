@@ -1,0 +1,28 @@
+.InferencePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 45%;
+}
+
+.InferencePage * {
+    animation: fade-in 0.5s;
+}
+
+.InferencePage h1 {
+    font-family: 'Poppins';
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.InferencePage p {
+    font-weight: 200;
+}
+
+.InferencePage button {
+    margin: 50px;
+    position: absolute;
+    bottom: 0;
+}

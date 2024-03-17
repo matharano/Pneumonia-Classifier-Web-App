@@ -17,7 +17,7 @@ app.add_middleware(CORSMiddleware,
 
 class Prediction(BaseModel):
     prediction: bool
-    confidence: float = Field(..., ge=0, le=1)
+    probability: float = Field(..., ge=0, le=1)
     detail: str = ''
 
 # Routes definitions
@@ -40,8 +40,8 @@ async def predict(file: UploadFile) -> Prediction:
         raise BrokenImage(len(file_content))
 
     # Inference
-    model = models.ResNet()
-    inference_class, confidence = model.infere(image)
+    model = models.ResNet(weights_path='backend/weights/ResNet18-SGD(0.001)-batch(32)-weightedloss.pth')
+    inference_class, probability = model.infere(image)
     inference = inference_class.lower() == 'pneumonia'
-    response = Prediction(prediction=inference, confidence=confidence)
+    response = Prediction(prediction=inference, probability=probability)
     return response

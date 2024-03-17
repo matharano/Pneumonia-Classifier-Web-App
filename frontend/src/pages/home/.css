@@ -1,0 +1,19 @@
+.HomePage {
+    max-width: 45%;
+}
+
+.HomePage * {
+    animation: fade-in 0.3s;
+}
+
+.HomePage h1 {
+    color: var(--blue);
+    font-family: 'Poppins';
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.HomePage p {
+    font-weight: 200;
+}

@@ -28,16 +28,17 @@ class ResNet():
     def __init__(self,
                  device:Literal['cpu', 'cuda'] = 'cpu',
                  classes:list[str] = ['Normal', 'Pneumonia'],
-                 weights_path:str = 'weights/Resnet-Adam(0.001)-batch(16).pth'
+                 weights_path:str = 'backend/weights/Resnet-Adam(0.001)-batch(16).pth'
                  ) -> None:
         self.device = torch.device(device)
         self.classes = classes
+        self.target_class_idx = self.classes.index('Pneumonia')  # The index of pneumonia
         self.model = resnet18()
         self.model.conv1 = Conv2d(1, 64, kernel_size=(7,7), stride=(2, 2), padding=(3, 3), bias=False)
-        self.model.fc = torch.nn.Linear(self.model.fc.in_features, len(self.classes), bias=True)
+        self.model.fc = torch.nn.Linear(self.model.fc.in_features, len(self.classes), bias=False)
         self.model.load_state_dict(torch.load(os.path.abspath(weights_path), map_location=self.device))
         self.model = self.model.to(device, dtype=torch.float)
-        self.softmax = Softmax(dim=0)
+        self.softmax = Softmax(dim=1)
     
     def preprocess(self, image:Image) -> np.ndarray:
         transform = transforms.Compose([
@@ -56,5 +57,6 @@ class ResNet():
         processed_image = self.preprocess(image)
         weights:torch.Tensor = self.softmax(self.model(processed_image))
         inference:str = self.classes[weights.argmax()]
-        confidence = weights.max()
-        return inference, confidence
+        print(weights)
+        probability = weights[0, self.target_class_idx]
+        return inference, probability
