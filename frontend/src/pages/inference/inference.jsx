@@ -13,21 +13,26 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: colors.blue,
+    backgroundColor: theme.color,
   },
 }));
 
 function Inference({image, prediction}) {
-
+    
+    const predictionColor = prediction['prediction'] ? colors.red : colors.blue;
     const probability = (100 * prediction['probability']).toFixed(1)
     return(
         <div className='InferencePage' style={{backgroundImage: `url(${URL.createObjectURL(image)})` }} >
             <div className='Background-gradient'>
                 <header >
-                    <h1>{prediction['prediction'] ? 'Pneumonia detected' : 'Pneumonia undetected'}</h1>
+                    <h1
+                        style={{ color: predictionColor }}
+                    >
+                        {prediction['prediction'] ? 'Pneumonia detected' : 'Pneumonia undetected'}
+                    </h1>
                     <p>{'Pneumonia probability: ' + probability + '%'}</p>
                     <Box sx={{ width: '100%'}}>
-                        <BorderLinearProgress variant="determinate" value={probability} />
+                        <BorderLinearProgress variant="determinate" value={probability} theme={{ color: predictionColor }} />
                     </Box>
                 </header>
             </div>
