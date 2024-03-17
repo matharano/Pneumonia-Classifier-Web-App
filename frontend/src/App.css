@@ -19,11 +19,11 @@
     background: radial-gradient(rgba(0,0,0,0.9), rgba(0, 0, 0, 0.826), rgba(0, 0, 0, 0.767));
 }
 
-.LoadingBanner {
+.LoadingBanner * {
     height: 100%;
     width: 100%;
     background-color: black;
-    animation: fade-in 0.5s;
+    animation: fade-in 2s;
 }
 
 .App a.NavBar {

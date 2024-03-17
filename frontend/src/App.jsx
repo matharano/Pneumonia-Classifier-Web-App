@@ -4,6 +4,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Home from './pages/home/home';
 import Inference from './pages/inference/inference';
+import ErrorPage from './pages/error/errorPage';
+import { quantum } from 'ldrs'
+import colors from './utils';
+
+quantum.register()
 
 function AppRoutes() {
     const [image, setImage] = React.useState();
@@ -42,23 +47,45 @@ function AppRoutes() {
             mode: "cors",
             body: form
         })
-        .then(response => response.json())
+        .then(response =>{
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            } else {
+                return response.json()
+            }
+        })
         .then(data => {
             setInferenceData(data);
             navigate("/prediction");
-            setTimeout(() => setIsLoading(false), 0);
+            setIsLoading(false);
+        })
+        .catch (error => {
+            setInferenceData(error.message);
+            navigate('/error');
+            setIsLoading(true);
+            setTimeout(() => setImage(null), 300);
+            setIsLoading(false);
         })
     }
 
     return (
         <div className="App" style={{ backgroundImage: `url(${image ? URL.createObjectURL(image) : BackgroundDefault})` }} >
             <div className='Background-gradient' style={{ animation: isLoading ? 'fadeToBlack 0.3s forwards' : 'none' }} >
-                {isLoading ? <div className='LoadingBanner'/> :
+                {isLoading ?
+                    <div className='LoadingBanner'>
+                        <l-quantum
+                            size="150"
+                            speed="3" 
+                            color={colors.blue} 
+                        ></l-quantum>
+                    </div>
+                    :
                     <>
                         <a className='NavBar' onClick={redirectHome} >Pneumonia Diagnosis</a>
                         <Routes>
                             <Route path="/" element={<Home setImage={handleImageSelection} />} />
                             <Route path="/prediction" element={inferenceData ? <Inference image={image} prediction={inferenceData} setImage={handleImageSelection} /> : null} />
+                            <Route path='/error' element={<ErrorPage errorDescription={inferenceData} />} />
                         </Routes>
                     </>
                 }
