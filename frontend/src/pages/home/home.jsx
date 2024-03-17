@@ -3,7 +3,6 @@ import React from 'react';
 import ImageInput from '../../components/ImageInput';
 
 function Home({setImage}) {
-    const inputFileRef = React.useRef();
 
     const handleImageSelection = (event) => {
         if ( event.target.files && event.target.files[0] ) {

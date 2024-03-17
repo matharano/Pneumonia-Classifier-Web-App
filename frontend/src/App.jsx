@@ -1,13 +1,19 @@
 import './App.css';
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Home from './pages/home/home';
 import Inference from './pages/inference/inference';
 
-
-function App() {
+function AppRoutes() {
     const [image, setImage] = React.useState();
-    const [imageSelected, setImageSelected] = React.useState(false);
     const [inferenceData, setInferenceData] = React.useState(null);
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        if (! image && ! inferenceData) {
+            navigate('/');
+        }
+    }, [image, inferenceData, navigate]);
 
     const handleImageSelection = (imageFile) => {
         // Update image
@@ -23,13 +29,28 @@ function App() {
             body: form
         })
         .then(response => response.json())
-        .then(data => {console.log(data); setInferenceData(data)})
+        .then(data => {
+            console.log(data); 
+            setInferenceData(data);
+        })
+        navigate("/prediction")
     }
 
     return (
         <div className="App">
-            {inferenceData != null ? <Inference image={image} prediction={inferenceData} setImage={handleImageSelection} /> : <Home setImage={handleImageSelection} />}
+            <Routes>
+                <Route path="/" element={<Home setImage={handleImageSelection} />} />
+                <Route path="/prediction" element={inferenceData ? <Inference image={image} prediction={inferenceData} setImage={handleImageSelection} /> : null} />
+            </Routes>
         </div>
+    );
+}
+
+function App() {
+    return (
+        <Router>
+            <AppRoutes />
+        </Router>
     );
 }
 
