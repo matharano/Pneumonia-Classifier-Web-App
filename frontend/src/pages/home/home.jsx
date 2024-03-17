@@ -25,7 +25,7 @@ function Home({setImage}) {
     return (
         <div className='Page'>
             <header>
-                <h1>Pneumonia diagnosis</h1>
+                <h1>Pneumonia Diagnosis</h1>
                 <p>Click in the button below to select an image of lungs xray or drop an image to infere whether it presents signs of pneumonia.</p>
                 <ColorButton
                     variant='outlined'
