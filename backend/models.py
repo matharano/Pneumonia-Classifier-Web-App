@@ -15,12 +15,12 @@ class Model(ABC):
         self.model: torch.nn
 
     @abstractmethod
-    def preprocess(image:np.ndarray) -> np.ndarray:
+    def preprocess(image:Image) -> torch.Tensor:
         """Makes the appropriate transformations in the image to prepare it for inference."""
         ...
 
     @abstractmethod
-    def infere(self, image:np.ndarray) -> tuple[str, float]:
+    def infere(self, image:Image) -> tuple[str, float]:
         """Inferes whether the image presents pneumonia (True), or not (False), and the confidence of the evaluation"""
         ...
 
@@ -40,7 +40,7 @@ class ResNet():
         self.model = self.model.to(device, dtype=torch.float)
         self.softmax = Softmax(dim=1)
     
-    def preprocess(self, image:Image) -> np.ndarray:
+    def preprocess(self, image:Image) -> torch.Tensor:
         transform = transforms.Compose([
             transforms.Grayscale(),
             transforms.Resize((980, 1340)),
@@ -76,7 +76,7 @@ class EfficientNet():
         self.model = self.model.to(device, dtype=torch.float)
         self.softmax = Softmax(dim=1)
     
-    def preprocess(self, image:Image) -> np.ndarray:
+    def preprocess(self, image:Image) -> torch.Tensor:
         transform = transforms.Compose([
             transforms.Grayscale(),
             transforms.Resize((490, 670)),

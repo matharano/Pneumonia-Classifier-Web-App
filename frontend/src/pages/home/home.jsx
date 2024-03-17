@@ -14,7 +14,7 @@ function Home({setImage}) {
         <div className='HomePage'>
             <header>
                 <h1>Pneumonia Diagnosis</h1>
-                <p>Click in the button below to select an image of lungs xray or drop an image to infere whether it presents signs of pneumonia.</p>
+                <p>Click in the button below to select an image of lungs xray to predict whether it presents signs of pneumonia.</p>
                 <ImageInput handleChange={handleImageSelection}/>
             </header>
         </div>
