@@ -17,7 +17,11 @@ Coding task for technical assessment at Deeplify
     ```sh
     git clone git@github.com:matharano/deeplify-coding-task.git
     ```
-2. Based on the `.env.template` file, create a `.env` file in the root directory and update the values if necessary.
+2. Navigate to the root directory
+    ```sh
+    cd deeplify-coding-task
+    ```
+3. Based on the `.env.template` file, create a `.env` file in the root directory and update the values if necessary.
     ```sh
     cp .env.template .env
     ```
