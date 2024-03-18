@@ -75,3 +75,15 @@ Execute the following command to run the tests:
     ```sh
     pytest
     ```
+
+## Machine Learning Evaluation
+
+The statistics of training and validation of the models are available in this [report](https://api.wandb.ai/links/mateusharano/u478xqz7).
+
+### Summary
+
+![Summary](doc/ml-report.png)
+
+### Precision-Recall Curve
+
+![Precision-Recall Curve](doc/pr-curve.png)
