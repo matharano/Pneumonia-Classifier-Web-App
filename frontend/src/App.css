@@ -1,0 +1,63 @@
+.App {
+  text-align: center;
+  background-size: cover;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  animation: app-fade-in 0.5s;
+}
+
+.Background-gradient {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: var(--white);
+    background: radial-gradient(rgba(0,0,0,0.9), rgba(0, 0, 0, 0.826), rgba(0, 0, 0, 0.767));
+}
+
+.LoadingBanner * {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    animation: fade-in 2s;
+}
+
+.App a.NavBar {
+    color: var(--white);
+    font-family: 'Poppins';
+    font-weight: 200;
+    font-size: calc(10px + 1.6vmin);
+    user-select: none;
+    cursor: pointer;
+    position: absolute;
+    margin: 30px;
+    top: 0;
+}
+
+@keyframes fadeToBlack {
+    0% { background-color: transparent; }
+    100% { background-color: black; }
+}
+
+@keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 100;
+    }
+  }
+
+@keyframes app-fade-in {
+    from {
+      opacity: 0;
+      background-color: black;
+    }
+    to {
+      opacity: 100;
+    }
+  }

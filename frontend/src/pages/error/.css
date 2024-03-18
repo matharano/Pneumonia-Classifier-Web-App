@@ -1,0 +1,19 @@
+.ErrorPage {
+    max-width: 45%;
+}
+
+.ErrorPage * {
+    animation: fade-in 0.3s;
+}
+
+.ErrorPage h1 {
+    color: var(--blue);
+    font-family: 'Poppins';
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.ErrorPage p {
+    font-weight: 200;
+}
