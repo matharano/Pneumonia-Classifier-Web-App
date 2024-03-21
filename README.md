@@ -1,5 +1,10 @@
-# deeplify-coding-task
-Coding task for technical assessment at Deeplify
+# Pneumonia Classifier Web App
+
+This repository contains the code for a web application that classifies chest X-ray images as normal or pneumonia. The application is divided into two parts: the backend, which is responsible for serving the model and making predictions, and the frontend, which is responsible for displaying the user interface.
+
+The backend is built using FastAPI and the frontend is built using React. The model used for classification is a convolutional neural network (CNN) trained on the [Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia) dataset.
+
+![Overview](doc/Pneumonia-Classifier-Web-App.gif)
 
 <!-- TABLE OF CONTENTS -->
 <details>
